@@ -24,6 +24,8 @@ else
     return
 end
 
+% imshow(floodmask) % for debug reasons
+
 trans=[-1,0;0,1;1,0;0,-1];
 
 for i=1:4

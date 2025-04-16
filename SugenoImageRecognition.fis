@@ -1,15 +1,15 @@
 [System]
-Name='MamdaniImageRecognition'
-Type='mamdani'
+Name='SugenoImageRecognition'
+Type='sugeno'
 Version=2.0
 NumInputs=5
 NumOutputs=1
-NumRules=7
+NumRules=2
 AndMethod='prod'
-OrMethod='max'
+OrMethod='probor'
 ImpMethod='prod'
 AggMethod='sum'
-DefuzzMethod='bisector'
+DefuzzMethod='wtaver'
 
 [Input1]
 Name='Mean'
@@ -50,15 +50,12 @@ MF2='high':'linsmf',[0.596313912009513 1.08858501783591]
 [Output1]
 Name='Cancer'
 Range=[0 1]
-NumMFs=2
-MF1='NotCancer':'linzmf',[0.1 0.75]
-MF2='Cancer':'linsmf',[0.4 0.95]
+NumMFs=4
+MF1='No':'constant',[0]
+MF2='Maybe':'constant',[0.333333333333333]
+MF3='Probably':'constant',[0.666666666666667]
+MF4='Yes':'constant',[1]
 
 [Rules]
-0 0 1 0 0, 1 (1) : 1
-0 0 2 0 0, 2 (1) : 1
-0 1 0 1 1, 1 (1) : 1
-0 1 0 3 1, 1 (1) : 1
-0 2 0 2 2, 2 (1) : 1
-2 0 0 0 2, 2 (1) : 2
-1 0 0 0 1, 1 (1) : 2
+0 0 2 0 0, 3 (1) : 1
+0 0 1 0 0, 2 (1) : 1
