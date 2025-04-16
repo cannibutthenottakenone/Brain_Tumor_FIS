@@ -40,7 +40,7 @@ classdef PopulationMember < handle
         end
 
         function mutate(obj) %implements non-uniform mutation
-             obj.weights=obj.weights+normrnd(0,0.06,1,length(obj.weights));
+             obj.weights=obj.weights+normrnd(0,0.03,1,length(obj.weights));
 
              obj.weights(obj.weights>1)=1;
              obj.weights(obj.weights<0)=0;
