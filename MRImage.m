@@ -63,6 +63,7 @@ classdef MRImage < handle
             if obj.max/obj.medianValue<settings.recognizeSeed
                 obj.floodedMap=zeros(obj.d);
                 seedCoordinates=[1,1];
+                obj.floodedMap=ones(obj.d)*20;
                 return
             end
             
@@ -87,10 +88,14 @@ classdef MRImage < handle
             % then the flood leaked everywhere
             if sum(obj.floodedMap(:))>0.5*(obj.d(1)*obj.d(2) - sum(background(:)))
                 obj.floodedMap=[];
+                return
             end
 
             %accounting for the walldistance could be added (expand in each
             %direction by wallDistanceThresh)
+
+            obj.floodedMap=bwdist(obj.floodedMap);
+            obj.floodedMap(obj.floodedMap>20)=20;
         end
     end
 end

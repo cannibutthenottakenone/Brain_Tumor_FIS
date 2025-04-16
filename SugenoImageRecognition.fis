@@ -4,7 +4,7 @@ Type='sugeno'
 Version=2.0
 NumInputs=5
 NumOutputs=1
-NumRules=2
+NumRules=6
 AndMethod='prod'
 OrMethod='probor'
 ImpMethod='prod'
@@ -16,7 +16,7 @@ Name='Mean'
 Range=[0 1]
 NumMFs=2
 MF1='black':'trapmf',[-0.75 -0.08333 0.08333 0.75]
-MF2='white':'trapmf',[0.25 0.9167 1.083 1.75]
+MF2='white':'trapmf',[0.401307966706302 0.9167 1.083 1.75]
 
 [Input2]
 Name='Gradient'
@@ -26,19 +26,18 @@ MF1='low':'trimf',[-0.833333 0 0.95]
 MF2='white':'trimf',[0.7 1.07669441141498 1.83333]
 
 [Input3]
-Name='FloodArea'
-Range=[0 1]
+Name='DistanceFromFlood'
+Range=[-1 20]
 NumMFs=2
-MF1='notFlooded':'trapmf',[-0.75 -0.08333 0.3 0.3]
-MF2='flooded':'trapmf',[0.7 0.7 1.083 1.75]
+MF1='notFlooded':'smf',[2 15]
+MF2='flooded':'trapmf',[-0.5 -0.5 3 5]
 
 [Input4]
 Name='Kurtosis'
 Range=[0 1]
-NumMFs=3
-MF1='low':'trimf',[-0.416667 0 0.5]
+NumMFs=2
+MF1='extreme':'invertedGaussian',[0.18 0.5]
 MF2='average':'trapmf',[0.2 0.4 0.6 0.8]
-MF3='high':'trimf',[0.5 1 1.41667]
 
 [Input5]
 Name='Distance from median'
@@ -57,5 +56,9 @@ MF3='Probably':'constant',[0.666666666666667]
 MF4='Yes':'constant',[1]
 
 [Rules]
-0 0 2 0 0, 3 (1) : 1
+0 0 2 0 0, 4 (1) : 1
 0 0 1 0 0, 2 (1) : 1
+1 0 0 0 1, 1 (1) : 1
+2 0 0 0 2, 4 (1) : 1
+2 2 0 2 0, 3 (1) : 1
+1 1 0 1 0, 2 (1) : 1
